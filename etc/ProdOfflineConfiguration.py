@@ -38,7 +38,7 @@ setConfigVersion(tier0Config, "replace with real version")
 setInjectMinRun(tier0Config, 334000)
 
 # Set the max run number:
-setInjectMaxRun(tier0Config, 9999999)
+setInjectMaxRun(tier0Config, 999999)
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -89,22 +89,22 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-       'default': "CMSSW_10_6_8_patch1"
+       'default': "CMSSW_11_0_1"
      }
 
 # Configure ScramArch
-setDefaultScramArch(tier0Config, "slc7_amd64_gcc700")
+setDefaultScramArch(tier0Config, "slc7_amd64_gcc820")
 
 # Configure scenarios
 ppScenario = "ppEra_Run3"
 ppScenarioB0T = "ppEra_Run3"
 cosmicsScenario = "cosmicsEra_Run3"
 hcalnzsScenario = "hcalnzsEra_Run3"
-hiScenario = "ppEra_Run2_2016_pA"
+hiScenario = "ppEra_Run3"
 alcaTrackingOnlyScenario = "trackingOnlyEra_Run3"
 alcaTestEnableScenario = "AlCaTestEnable"
 alcaLumiPixelsScenario = "AlCaLumiPixels"
-hiTestppScenario = "ppEra_Run2_2018_pp_on_AA"
+hiTestppScenario = "ppEra_Run3"
 
 # Defaults for processing version
 defaultProcVersionRAW = 1
@@ -122,9 +122,9 @@ expressProcVersion = {
      }
 
 # Defaults for GlobalTag
-expressGlobalTag = "106X_dataRun3_Express_v2"
-promptrecoGlobalTag = "106X_dataRun3_Prompt_v3"
-alcap0GlobalTag = "106X_dataRun3_Prompt_v3"
+expressGlobalTag = "110X_dataRun3_Express_v2"
+promptrecoGlobalTag = "110X_dataRun3_Prompt_v3"
+alcap0GlobalTag = "110X_dataRun3_Prompt_v3"
 
 # Mandatory for CondDBv2
 globalTagConnect = "frontier://PromptProd/CMS_CONDITIONS"
@@ -141,59 +141,63 @@ alcarawSplitting = 20000 * numberOfCores
 # Setup repack and express mappings
 #
 repackVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_2" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_3" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_4" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_5" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_2" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_3" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_4" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_5" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_6" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_7" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_8" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_9" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_10" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_2_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_2_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_2_5" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_3_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_3_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_3_3" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_6_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_6_3" : "CMSSW_10_6_8_patch1"
+    "CMSSW_10_0_0" : "CMSSW_11_0_1",
+    "CMSSW_10_0_1" : "CMSSW_11_0_1",
+    "CMSSW_10_0_2" : "CMSSW_11_0_1",
+    "CMSSW_10_0_3" : "CMSSW_11_0_1",
+    "CMSSW_10_0_4" : "CMSSW_11_0_1",
+    "CMSSW_10_0_5" : "CMSSW_11_0_1",
+    "CMSSW_10_1_0" : "CMSSW_11_0_1",
+    "CMSSW_10_1_1" : "CMSSW_11_0_1",
+    "CMSSW_10_1_2" : "CMSSW_11_0_1",
+    "CMSSW_10_1_3" : "CMSSW_11_0_1",
+    "CMSSW_10_1_4" : "CMSSW_11_0_1",
+    "CMSSW_10_1_5" : "CMSSW_11_0_1",
+    "CMSSW_10_1_6" : "CMSSW_11_0_1",
+    "CMSSW_10_1_7" : "CMSSW_11_0_1",
+    "CMSSW_10_1_8" : "CMSSW_11_0_1",
+    "CMSSW_10_1_9" : "CMSSW_11_0_1",
+    "CMSSW_10_1_10" : "CMSSW_11_0_1",
+    "CMSSW_10_2_0" : "CMSSW_11_0_1",
+    "CMSSW_10_2_1" : "CMSSW_11_0_1",
+    "CMSSW_10_2_5" : "CMSSW_11_0_1",
+    "CMSSW_10_3_0" : "CMSSW_11_0_1",
+    "CMSSW_10_3_1" : "CMSSW_11_0_1",
+    "CMSSW_10_3_3" : "CMSSW_11_0_1",
+    "CMSSW_10_6_1" : "CMSSW_11_0_1",
+    "CMSSW_10_6_3" : "CMSSW_11_0_1",
+    "CMSSW_10_6_8" : "CMSSW_11_0_1",
+    "CMSSW_11_0_0" : "CMSSW_11_0_1"
     }
 
 expressVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_2" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_3" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_4" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_0_5" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_2" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_3" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_4" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_5" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_6" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_7" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_8" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_9" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_1_10" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_2_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_2_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_2_5" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_3_0" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_3_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_3_3" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_6_1" : "CMSSW_10_6_8_patch1",
-    "CMSSW_10_6_3" : "CMSSW_10_6_8_patch1"
+    "CMSSW_10_0_0" : "CMSSW_11_0_1",
+    "CMSSW_10_0_1" : "CMSSW_11_0_1",
+    "CMSSW_10_0_2" : "CMSSW_11_0_1",
+    "CMSSW_10_0_3" : "CMSSW_11_0_1",
+    "CMSSW_10_0_4" : "CMSSW_11_0_1",
+    "CMSSW_10_0_5" : "CMSSW_11_0_1",
+    "CMSSW_10_1_0" : "CMSSW_11_0_1",
+    "CMSSW_10_1_1" : "CMSSW_11_0_1",
+    "CMSSW_10_1_2" : "CMSSW_11_0_1",
+    "CMSSW_10_1_3" : "CMSSW_11_0_1",
+    "CMSSW_10_1_4" : "CMSSW_11_0_1",
+    "CMSSW_10_1_5" : "CMSSW_11_0_1",
+    "CMSSW_10_1_6" : "CMSSW_11_0_1",
+    "CMSSW_10_1_7" : "CMSSW_11_0_1",
+    "CMSSW_10_1_8" : "CMSSW_11_0_1",
+    "CMSSW_10_1_9" : "CMSSW_11_0_1",
+    "CMSSW_10_1_10" : "CMSSW_11_0_1",
+    "CMSSW_10_2_0" : "CMSSW_11_0_1",
+    "CMSSW_10_2_1" : "CMSSW_11_0_1",
+    "CMSSW_10_2_5" : "CMSSW_11_0_1",
+    "CMSSW_10_3_0" : "CMSSW_11_0_1",
+    "CMSSW_10_3_1" : "CMSSW_11_0_1",
+    "CMSSW_10_3_3" : "CMSSW_11_0_1",
+    "CMSSW_10_6_1" : "CMSSW_11_0_1",
+    "CMSSW_10_6_3" : "CMSSW_11_0_1",
+    "CMSSW_10_6_8" : "CMSSW_11_0_1",
+    "CMSSW_11_0_0" : "CMSSW_11_0_1"
     }
 
 #set default repack settings for bulk streams
@@ -227,6 +231,8 @@ addDataset(tier0Config, "Default",
            disk_node = "T1_US_FNAL_Disk",
            raw_to_disk = False,
            blockCloseDelay = 24 * 3600,
+           # only temporarily we want to release few PR runs to HLT.
+           #siteWhitelist = [ "T2_CH_CERN_HLT" ],
            timePerEvent = 5,
            sizePerEvent = 1500,
            scenario = ppScenario)
@@ -243,8 +249,7 @@ addExpressConfig(tier0Config, "Express",
                  alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "SiStripCalMinBias", "SiStripCalMinBiasAAG",
                                     "TkAlMinBias", "DtCalib", "LumiPixelsMinBias", "SiPixelCalZeroBias",
                                     "PromptCalibProd", "PromptCalibProdSiStrip", "PromptCalibProdSiPixelAli",
-                                    "PromptCalibProdSiStripGains", "PromptCalibProdSiStripGainsAAG", "PromptCalibProdSiPixel",
-                                    "PromptCalibProdBeamSpotHPLowPU"
+                                    "PromptCalibProdSiStripGains", "PromptCalibProdSiStripGainsAAG", "PromptCalibProdSiPixel"
                                     ],
                  reco_version = defaultCMSSWVersion,
                  multicore = numberOfCores,
@@ -331,8 +336,8 @@ addExpressConfig(tier0Config, "Calibration",
                  sizePerEvent = 1700,
                  versionOverride = expressVersionOverride,
                  archivalNode = "T0_CH_CERN_MSS",
-                 dataType = "data",
-                 tape_node = "T1_US_FNAL_MSS")
+                 tape_node = "T1_US_FNAL_MSS",
+                 dataType = "data")
 
 addExpressConfig(tier0Config, "ExpressAlignment",
                  scenario = alcaTrackingOnlyScenario,
@@ -392,7 +397,7 @@ addExpressConfig(tier0Config, "HIExpress",
                  data_tiers = [ "FEVT" ],
                  write_dqm = True,
                  alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "SiStripCalMinBias", "SiStripCalMinBiasAAG",
-                                    "TkAlMinBias", "DtCalib", "LumiPixelsMinBias", "SiPixelCalZeroBias",
+                                    "TkAlMinBias", "SiPixelCalZeroBias", "DtCalib", 
                                     "PromptCalibProd", "PromptCalibProdSiStrip", "PromptCalibProdSiPixelAli",
                                     "PromptCalibProdSiStripGains", "PromptCalibProdSiStripGainsAAG", "PromptCalibProdSiPixel"
                                     ],
@@ -416,7 +421,7 @@ addExpressConfig(tier0Config, "HIExpressAlignment",
                  scenario = hiTestppScenario,
                  data_tiers = [ "ALCARECO", "RAW" ],
                  write_dqm = True,
-                 alca_producers = [ "TkAlMinBias" ],
+                 alca_producers = [ "TkAlMinBias", "PromptCalibProdBeamSpotHP" ],
                  dqm_sequences = [ "DQMOfflineTracking" ],
                  reco_version = defaultCMSSWVersion,
                  raw_to_disk = True,
@@ -435,6 +440,7 @@ addExpressConfig(tier0Config, "HIExpressAlignment",
                  sizePerEvent = 1700,
                  versionOverride = expressVersionOverride,
                  diskNode = "T2_CH_CERN")
+
 
 ###################################
 ### Standard Physics PDs (2017) ###
@@ -483,11 +489,11 @@ datasets = [ "Cosmics" ]
 
 for dataset in datasets:
     addDataset(tier0Config, dataset,
-           do_reco = False,
+           do_reco = True,
            write_reco = False,
            write_miniaod = False,
            write_dqm = True,
-           alca_producers = [ "TkAlCosmics0T", "MuAlGlobalCosmics", "DtCalibCosmics" ],
+           alca_producers = [ "TkAlCosmics0T","MuAlGlobalCosmics", "DtCalibCosmics" ],
            physics_skims = [ "CosmicSP", "CosmicTP", "LogError", "LogErrorMonitor" ],
            timePerEvent = 0.5,
            sizePerEvent = 155,
@@ -995,7 +1001,7 @@ datasets = [ "MinimumBias" ]
 
 for dataset in datasets:
     addDataset(tier0Config, dataset,
-               do_reco = False,
+               do_reco = True,
                write_dqm = True,
                tape_node = "T1_RU_JINR_MSS",
                disk_node = "T1_RU_JINR_Disk",
@@ -1570,6 +1576,7 @@ addDataset(tier0Config, "PAEmptyBX",
            dqm_sequences = [ "@common" ],
            scenario = hiScenario)
 
+
 #############################
 ###   PDs pA VdM scan     ###
 #############################
@@ -1629,6 +1636,35 @@ for dataset in datasets:
                dqm_sequences = [ "@common" ],
                scenario = hiTestppScenario)
 
+#############################
+###   New PDs for MWGR#1  ###
+#############################
+datasets = [ "VRRandom0", "VRRandom1", "VRRandom2", "VRRandom3",
+             "VRRandom4", "VRRandom5", "VRRandom6", "VRRandom7",
+             "VRRandom8", "VRRandom9", "VRRandom10", "VRRandom11",
+             "VRRandom12", "VRRandom13", "VRRandom14", "VRRandom15" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, "Default",
+            do_reco = True,
+            write_reco = True, write_aod = True, write_miniaod = True, write_dqm = False,
+            reco_delay = defaultRecoTimeout,
+            reco_delay_offset = defaultRecoLockTimeout,
+            reco_split = defaultRecoSplitting,
+            proc_version = defaultProcVersionReco,
+            cmssw_version = defaultCMSSWVersion,
+            multicore = numberOfCores,
+            global_tag = promptrecoGlobalTag,
+            global_tag_connect = globalTagConnect,
+            archival_node = "T0_CH_CERN_MSS",
+            tape_node = "T1_US_FNAL_MSS",
+            disk_node = "T1_US_FNAL_Disk",
+            raw_to_disk = False,
+            blockCloseDelay = 24 * 3600,
+            timePerEvent = 5,
+            sizePerEvent = 1500,
+            scenario = ppScenario)
+
 #######################
 ### ignored streams ###
 #######################
@@ -1636,6 +1672,7 @@ for dataset in datasets:
 ignoreStream(tier0Config, "Error")
 ignoreStream(tier0Config, "HLTMON")
 ignoreStream(tier0Config, "EventDisplay")
+ignoreStream(tier0Config, "HIEventDisplay")
 ignoreStream(tier0Config, "DQM")
 ignoreStream(tier0Config, "DQMEventDisplay")
 ignoreStream(tier0Config, "LookArea")
@@ -1666,3 +1703,4 @@ ignoreStream(tier0Config, "streamDQMRates")
 
 if __name__ == '__main__':
     print(tier0Config)
+
