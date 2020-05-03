@@ -1,7 +1,7 @@
 """
 _OfflineConfiguration_
 
-Processing configuration for the Tier0 - Replay version
+Processing configuration for the Tier0 Container - Replay version
 """
 from __future__ import print_function
 
@@ -90,7 +90,7 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-       'default': "CMSSW_11_0_1"
+       'default': "CMSSW_11_0_2"
      }
 
 # Configure ScramArch
