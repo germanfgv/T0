@@ -699,6 +699,7 @@ def configureRunStream(tier0Config, run, stream, specDirectory, dqmUploadProxy):
             for subscription in subscriptions:
                 wmSpec.setSubscriptionInformation(**subscription)
 
+        addSiteConfig(wmSpec)
         if streamConfig.ProcessingStyle in [ 'Bulk', 'Express' ]:
             wmSpec.setOwnerDetails("Dirk.Hufnagel@cern.ch", "T0",
                                    { 'vogroup': 'DEFAULT', 'vorole': 'DEFAULT',
@@ -1124,6 +1125,8 @@ def releasePromptReco(tier0Config, specDirectory, dqmUploadProxy):
                                           'SoftTimeout': 604800, #7 days, effectively disabled
                                           'GracePeriod': 3600,
                                           'Dashboard': "t0" } )
+                
+                addSiteConfig(wmSpec)
 
                 wmbsHelper = WMBSHelper(wmSpec, taskName, cachepath = specDirectory)
 
@@ -1154,3 +1157,19 @@ def releasePromptReco(tier0Config, specDirectory, dqmUploadProxy):
             myThread.transaction.commit()
 
     return
+
+from WMCore.WMSpec.Steps.Template import Template
+from WMCore.WMSpec.Steps.Template import CoreHelper
+import WMCore.WMSpec.WMTask as WMTask
+
+def addSiteConfig(workload):
+    for topLevelTask in workload.taskIterator():
+        for taskNode in topLevelTask.nodeIterator():
+            task = WMTask.WMTaskHelper(taskNode)
+
+            for s in task.steps().nodeIterator():
+                s = CoreHelper(s)
+                s.addEnvironmentVariable('WMAGENT_SITE_CONFIG_OVERRIDE', '/cvmfs/cms.cern.ch/SITECONF/T0_CH_CERN/JobConfig/site-local-config.xml')
+    
+    return
+
