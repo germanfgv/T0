@@ -334,7 +334,7 @@ class HTTP(object):
         # self.curl.setopt( self.curl.POST, {})
         self.curl.setopt(self.curl.HTTPGET, 0)
 
-        response = io.StringIO()
+        response = io.BytesIO()
         self.curl.setopt(pycurl.WRITEFUNCTION, response.write)
         self.curl.setopt(pycurl.USERPWD, '%s:%s' % (username, password) )
 
@@ -345,7 +345,7 @@ class HTTP(object):
         logging.debug('got: %s ', str(code))
 
         try:
-            self.token = json.loads( response.getvalue() )['token']
+            self.token = json.loads( response.getvalue().decode('UTF-8') )['token']
         except Exception as e:
             logging.error('http::getToken> got error from server: %s ', str(e) )
             if 'No JSON object could be decoded' in str(e):
@@ -354,9 +354,9 @@ class HTTP(object):
             return None
 
         logging.debug('token: %s', self.token)
-        logging.debug('returning: %s', response.getvalue())
+        logging.debug('returning: %s', response.getvalue().decode('UTF-8'))
 
-        return response.getvalue()
+        return response.getvalue().decode('UTF-8')
 
     def query(self, url, data = None, files = None, keepCookies = True):
         '''Queries a URL, optionally with some data (dictionary).
@@ -413,7 +413,7 @@ class HTTP(object):
 
                 self.curl.setopt(pycurl.VERBOSE, 0)
 
-                response = io.StringIO()
+                response = io.BytesIO()
                 self.curl.setopt(self.curl.WRITEFUNCTION, response.write)
                 self.curl.perform()
 
@@ -424,9 +424,9 @@ class HTTP(object):
                     continue
 
                 if code != 200:
-                    raise HTTPError(code, response.getvalue())
+                    raise HTTPError(code, response.getvalue().decode('UTF-8'))
 
-                return response.getvalue()
+                return response.getvalue().decode('UTF-8')
 
             except pycurl.error as e:
                 if len(retries) == 0:
