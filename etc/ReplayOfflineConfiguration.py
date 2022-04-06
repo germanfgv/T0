@@ -32,7 +32,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [349840])
+setInjectRuns(tier0Config, [347028])
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -99,7 +99,7 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-    'default': "CMSSW_12_2_3_patch1"
+    'default': "CMSSW_12_2_3"
 }
 
 # Configure ScramArch
@@ -117,7 +117,7 @@ alcaLumiPixelsScenario = "AlCaLumiPixels"
 hiTestppScenario = "ppEra_Run3"
 
 # Procesing version number replays
-dt = 212
+dt = 404
 defaultProcVersion = dt
 expressProcVersion = dt
 alcarawProcVersion = dt
@@ -163,9 +163,7 @@ repackVersionOverride = {
     "CMSSW_12_0_3" : defaultCMSSWVersion['default'],
     "CMSSW_12_0_3_patch1" : defaultCMSSWVersion['default'],
     "CMSSW_12_2_1" : defaultCMSSWVersion['default'],
-    "CMSSW_12_2_1_patch1" : defaultCMSSWVersion['default'],
-    "CMSSW_12_2_2" : defaultCMSSWVersion['default'],
-    "CMSSW_12_2_3" : defaultCMSSWVersion['default']
+    "CMSSW_12_2_1_patch1" : defaultCMSSWVersion['default']
     }
 
 expressVersionOverride = {
@@ -190,9 +188,7 @@ expressVersionOverride = {
     "CMSSW_12_0_3" : defaultCMSSWVersion['default'],
     "CMSSW_12_0_3_patch1" : defaultCMSSWVersion['default'],
     "CMSSW_12_2_1" : defaultCMSSWVersion['default'],
-    "CMSSW_12_2_1_patch1" : defaultCMSSWVersion['default'],
-    "CMSSW_12_2_2" : defaultCMSSWVersion['default'],
-    "CMSSW_12_2_3" : defaultCMSSWVersion['default']
+    "CMSSW_12_2_1_patch1" : defaultCMSSWVersion['default']
     }
 
 #set default repack settings for bulk streams
@@ -488,7 +484,8 @@ for dataset in DATASETS:
                physics_skims=["CosmicSP", "CosmicTP", "LogError", "LogErrorMonitor"],
                timePerEvent=0.5,
                sizePerEvent=155,
-               scenario=cosmicsScenario)
+               scenario=cosmicsScenario,
+               siteWhitelist = [ "T1_US_FNAL" ])
 
 DATASETS = ["DisplacedJet"]
 
@@ -911,7 +908,8 @@ for dataset in DATASETS:
                dqm_sequences=["@common", "@ecal", "@jetmet", "@L1TMon", "@hcal", "@L1TEgamma"],
                alca_producers=["TkAlMinBias"],
                physics_skims=["LogError", "LogErrorMonitor"],
-               scenario=ppScenario)
+               scenario=ppScenario,
+               siteWhitelist = [ "T1_UK_RAL" ])
 
 DATASETS = ["HLTPhysicsBunchTrains", "HLTPhysicsIsolatedBunch"]
 
@@ -972,7 +970,8 @@ for dataset in DATASETS:
                timePerEvent=1,
                alca_producers=["SiStripCalZeroBias", "SiStripCalMinBias", "TkAlMinBias", "HcalCalHO", 
                                "HcalCalIterativePhiSym", "HcalCalHBHEMuonFilter", "HcalCalIsoTrkFilter"],
-               scenario=ppScenario)
+               scenario=ppScenario,
+               siteWhitelist = [ "T1_IT_CNAF" ])
 
 DATASETS = ["L1MinimumBias"]
 
