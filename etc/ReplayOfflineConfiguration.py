@@ -58,7 +58,7 @@ addSiteConfig(tier0Config, "EOS_PILOT",
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Tier0_REPLAY_2022")
+setAcquisitionEra(tier0Config, "Tier0_REPLAY_2022_HLT")
 setBaseRequestPriority(tier0Config, 251000)
 setBackfill(tier0Config, 1)
 setBulkDataType(tier0Config, "data")
@@ -100,7 +100,7 @@ setPromptCalibrationConfig(tier0Config,
 #   'default': Value5 }
 
 # Defaults for CMSSW version
-defaultCMSSWVersion={
+defaultCMSSWVersion = {
        'default': "CMSSW_10_2_5_patch1"
      }
 
@@ -108,37 +108,37 @@ defaultCMSSWVersion={
 setDefaultScramArch(tier0Config, "slc6_amd64_gcc700")
 
 # Configure scenarios
-ppScenario="ppEra_Run2_2018"
-ppScenarioB0T="ppEra_Run2_2018"
-cosmicsScenario="cosmicsEra_Run2_2018"
-hcalnzsScenario="hcalnzsEra_Run2_2018"
-hiScenario="ppEra_Run2_2016_pA"
-alcaTrackingOnlyScenario="trackingOnlyEra_Run2_2018"
-alcaTestEnableScenario="AlCaTestEnable"
-alcaLumiPixelsScenario="AlCaLumiPixels"
-hiTestppScenario="ppEra_Run2_2018_pp_on_AA"
+ppScenario = "ppEra_Run2_2018"
+ppScenarioB0T = "ppEra_Run2_2018"
+cosmicsScenario = "cosmicsEra_Run2_2018"
+hcalnzsScenario = "hcalnzsEra_Run2_2018"
+hiScenario = "ppEra_Run2_2016_pA"
+alcaTrackingOnlyScenario = "trackingOnlyEra_Run2_2018"
+alcaTestEnableScenario = "AlCaTestEnable"
+alcaLumiPixelsScenario = "AlCaLumiPixels"
+hiTestppScenario = "ppEra_Run2_2018_pp_on_AA"
 
-# Procesing version number replays
-dt=410
-defaultProcVersion=dt
-expressProcVersion=dt
-alcarawProcVersion=dt
+# Processing version number replays
+dt = 411
+defaultProcVersion = dt
+expressProcVersion = dt
+alcarawProcVersion = dt
 
 # Defaults for GlobalTag
-expressGlobalTag="102X_dataRun2_Express_v3"
-promptrecoGlobalTag="102X_dataRun2_Prompt_v7"
-alcap0GlobalTag="102X_dataRun2_Prompt_v7"
+expressGlobalTag = "102X_dataRun2_Express_v3"
+promptrecoGlobalTag = "102X_dataRun2_Prompt_v7"
+alcap0GlobalTag = "102X_dataRun2_Prompt_v7"
 
 # Mandatory for CondDBv2
-globalTagConnect="frontier://PromptProd/CMS_CONDITIONS"
+globalTagConnect = "frontier://PromptProd/CMS_CONDITIONS"
 
 # Multicore settings
-numberOfCores=8
+numberOfCores = 8
 
 # Splitting parameters for PromptReco
-defaultRecoSplitting=750 * numberOfCores
-hiRecoSplitting=200 * numberOfCores
-alcarawSplitting=20000 * numberOfCores
+defaultRecoSplitting = 750 * numberOfCores
+hiRecoSplitting = 200 * numberOfCores
+alcarawSplitting = 20000 * numberOfCores
 
 #
 # Setup repack and express mappings
@@ -222,6 +222,7 @@ addDataset(tier0Config, "Default",
            timePerEvent=5,
            sizePerEvent=1500,
            maxMemoryperCore=2000,
+           siteWhitelist = ["T2_CH_CERN_HLT"],
            scenario=ppScenario)
 
 #############################
@@ -556,7 +557,7 @@ for dataset in DATASETS:
 
 DATASETS = ["FSQJet1", "FSQJet2"]
 
-datasets += ["FSQJets", "FSQJets1", "FSQJets2", "FSQJets3"]
+DATASETS += ["FSQJets", "FSQJets1", "FSQJets2", "FSQJets3"]
 
 for dataset in DATASETS:
     addDataset(tier0Config, dataset,
@@ -567,9 +568,9 @@ for dataset in DATASETS:
 
 DATASETS = ["HINCaloJets", "HINPFJets"]
 
-datasets += ["HINCaloJet40", "HINPFJet100", "HINCaloJet100", "HINCaloJetsOther", "HINPFJetsOther"]
+DATASETS += ["HINCaloJet40", "HINPFJet100", "HINCaloJet100", "HINCaloJetsOther", "HINPFJetsOther"]
 
-datasets += ["HINMuon", "HINPhoton"]
+DATASETS += ["HINMuon", "HINPhoton"]
 
 for dataset in DATASETS:
     addDataset(tier0Config, dataset,
@@ -592,10 +593,10 @@ for dataset in DATASETS:
 
 DATASETS = ["HighMultiplicity"]
 
-datasets += ["HighMultiplicityEOF0", "HighMultiplicityEOF1", "HighMultiplicityEOF2",
+DATASETS += ["HighMultiplicityEOF0", "HighMultiplicityEOF1", "HighMultiplicityEOF2",
               "HighMultiplicityEOF3", "HighMultiplicityEOF4", "HighMultiplicityEOF5"]
 
-datasets += ["HighMultiplicity85", "HighMultiplicity85EOF"]
+DATASETS += ["HighMultiplicity85", "HighMultiplicity85EOF"]
 
 for dataset in DATASETS:
     addDataset(tier0Config, dataset,
@@ -619,7 +620,7 @@ for dataset in DATASETS:
 
 DATASETS = ["HighPtLowerPhotons", "HighPtPhoton30AndZ"]
 
-datasets += ["ppForward", "HighPtLowerJets", "MuPlusX"]
+DATASETS += ["ppForward", "HighPtLowerJets", "MuPlusX"]
 
 for dataset in DATASETS:
     addDataset(tier0Config, dataset,
@@ -744,7 +745,7 @@ for dataset in DATASETS:
 
 DATASETS = ["Commissioning"]
 
-datasets += ["Commissioning1", "Commissioning2", "Commissioning3", "Commissioning4",
+DATASETS += ["Commissioning1", "Commissioning2", "Commissioning3", "Commissioning4",
               "CommissioningMuons", "CommissioningEGamma", "CommissioningTaus", "CommissioningSingleJet", "CommissioningDoubleJet"]
 
 for dataset in DATASETS:
@@ -959,10 +960,10 @@ for dataset in DATASETS:
 
 DATASETS = ["L1MinimumBias"]
 
-datasets += ["L1MinimumBiasHF1", "L1MinimumBiasHF2", "L1MinimumBiasHF3", "L1MinimumBiasHF4",
+DATASETS += ["L1MinimumBiasHF1", "L1MinimumBiasHF2", "L1MinimumBiasHF3", "L1MinimumBiasHF4",
               "L1MinimumBiasHF5", "L1MinimumBiasHF6", "L1MinimumBiasHF7", "L1MinimumBiasHF8"]
 
-datasets += ["L1MinimumBias0", "L1MinimumBias1", "L1MinimumBias2", "L1MinimumBias3", "L1MinimumBias4",
+DATASETS += ["L1MinimumBias0", "L1MinimumBias1", "L1MinimumBias2", "L1MinimumBias3", "L1MinimumBias4",
               "L1MinimumBias5", "L1MinimumBias6", "L1MinimumBias7", "L1MinimumBias8", "L1MinimumBias9",
               "L1MinimumBias10"]
 
@@ -979,41 +980,41 @@ for dataset in DATASETS:
 
 DATASETS = ["ZeroBias"]
 
-datasets += ["ZeroBias0", "ZeroBias1", "ZeroBias2",
+DATASETS += ["ZeroBias0", "ZeroBias1", "ZeroBias2",
              "ZeroBias3", "ZeroBias4", "ZeroBias5", "ZeroBias6",
              "ZeroBias7", "ZeroBias8", "ZeroBias9", "ZeroBias10",
              "ZeroBias11", "ZeroBias12", "ZeroBias13", "ZeroBias14",
              "ZeroBias15", "ZeroBias16", "ZeroBias17", "ZeroBias18",
              "ZeroBias19", "ZeroBias20"]
 
-datasets += ["ZeroBiasIsolatedBunches", "ZeroBiasIsolatedBunches0", "ZeroBiasIsolatedBunches1", "ZeroBiasIsolatedBunches2",
+DATASETS += ["ZeroBiasIsolatedBunches", "ZeroBiasIsolatedBunches0", "ZeroBiasIsolatedBunches1", "ZeroBiasIsolatedBunches2",
              "ZeroBiasIsolatedBunches3", "ZeroBiasIsolatedBunches4", "ZeroBiasIsolatedBunches5", "ZeroBiasIsolatedBunches6",
              "ZeroBiasIsolatedBunches7", "ZeroBiasIsolatedBunches8", "ZeroBiasIsolatedBunches9", "ZeroBiasIsolatedBunches10"]
 
-datasets += ["ZeroBiasIsolatedBunch", "ZeroBiasAfterIsolatedBunch",
+DATASETS += ["ZeroBiasIsolatedBunch", "ZeroBiasAfterIsolatedBunch",
              "ZeroBiasIsolatedBunch0", "ZeroBiasIsolatedBunch1", "ZeroBiasIsolatedBunch2",
              "ZeroBiasIsolatedBunch3", "ZeroBiasIsolatedBunch4", "ZeroBiasIsolatedBunch5"]
 
-datasets += ["ZeroBiasBunchTrains0", "ZeroBiasBunchTrains1", "ZeroBiasBunchTrains2",
+DATASETS += ["ZeroBiasBunchTrains0", "ZeroBiasBunchTrains1", "ZeroBiasBunchTrains2",
              "ZeroBiasBunchTrains3", "ZeroBiasBunchTrains4", "ZeroBiasBunchTrains5"]
 
-datasets += ["ZeroBiasFirstBunchAfterTrain", "ZeroBiasFirstBunchInTrain"]
+DATASETS += ["ZeroBiasFirstBunchAfterTrain", "ZeroBiasFirstBunchInTrain"]
 
-datasets += ["ZeroBiasPixelHVScan0", "ZeroBiasPixelHVScan1", "ZeroBiasPixelHVScan2",
+DATASETS += ["ZeroBiasPixelHVScan0", "ZeroBiasPixelHVScan1", "ZeroBiasPixelHVScan2",
              "ZeroBiasPixelHVScan3", "ZeroBiasPixelHVScan4", "ZeroBiasPixelHVScan5",
              "ZeroBiasPixelHVScan6", "ZeroBiasPixelHVScan7"]
 
-datasets += ["ZeroBias8b4e1", "ZeroBias8b4e2", "ZeroBias8b4e3",
+DATASETS += ["ZeroBias8b4e1", "ZeroBias8b4e2", "ZeroBias8b4e3",
              "ZeroBias8b4e4", "ZeroBias8b4e5", "ZeroBias8b4e6",
              "ZeroBias8b4e7", "ZeroBias8b4e8", "ZeroBias8b4e10",
              "ZeroBias8b4e9"]
 
-datasets += ["ZeroBiasNominalTrains1", "ZeroBiasNominalTrains2", "ZeroBiasNominalTrains3",
+DATASETS += ["ZeroBiasNominalTrains1", "ZeroBiasNominalTrains2", "ZeroBiasNominalTrains3",
              "ZeroBiasNominalTrains4", "ZeroBiasNominalTrains5", "ZeroBiasNominalTrains6",
              "ZeroBiasNominalTrains7", "ZeroBiasNominalTrains8", "ZeroBiasNominalTrains10",
              "ZeroBiasNominalTrains9"]
 
-datasets += ["ZeroBiasPD01", "ZeroBiasPD02", "ZeroBiasPD03",
+DATASETS += ["ZeroBiasPD01", "ZeroBiasPD02", "ZeroBiasPD03",
              "ZeroBiasPD04", "ZeroBiasPD05", "ZeroBiasPD06",
              "ZeroBiasPD07", "ZeroBiasPD08", "ZeroBiasPD09",
              "ZeroBiasPD10"]
@@ -1133,7 +1134,7 @@ DATASETS = ["ParkingHLTPhysics", "ParkingHLTPhysics0", "ParkingHLTPhysics1",
              "ParkingHLTPhysics17", "ParkingHLTPhysics18", "ParkingHLTPhysics19",
              "ParkingHLTPhysics20"]
 
-datasets += ["ParkingZeroBias", "ParkingZeroBias0",
+DATASETS += ["ParkingZeroBias", "ParkingZeroBias0",
              "ParkingZeroBias1", "ParkingZeroBias2", "ParkingZeroBias3",
              "ParkingZeroBias4", "ParkingZeroBias5", "ParkingZeroBias6",
              "ParkingZeroBias7", "ParkingZeroBias8", "ParkingZeroBias9",
@@ -1142,7 +1143,7 @@ datasets += ["ParkingZeroBias", "ParkingZeroBias0",
              "ParkingZeroBias16", "ParkingZeroBias17", "ParkingZeroBias18",
              "ParkingZeroBias19", "ParkingZeroBias20"]
 
-datasets += ["AlCaElectron", "VRRandom", "VRRandom0", "VRRandom1", "VRRandom2", "VRRandom3",
+DATASETS += ["AlCaElectron", "VRRandom", "VRRandom0", "VRRandom1", "VRRandom2", "VRRandom3",
              "VRRandom4", "VRRandom5", "VRRandom6", "VRRandom7", "VRZeroBias", "VirginRaw"]
 
 for dataset in DATASETS:
@@ -1236,17 +1237,17 @@ DATASETS = ["TOTEM_minBias", "TOTEM_romanPots", "ToTOTEM", "ToTOTEM_DoubleJet32_
              "TOTEM_romanPotsTTBB_0", "TOTEM_romanPotsTTBB_1", "TOTEM_romanPotsTTBB_2", "TOTEM_romanPotsTTBB_3",
              "TOTEM_romanPotsTTBB_4", "TOTEM_romanPotsTTBB_5", "TOTEM_romanPotsTTBB_6", "TOTEM_romanPotsTTBB_7"]
 
-datasets += ["Totem1", "Totem2", "Totem3", "Totem4"]
+DATASETS += ["Totem1", "Totem2", "Totem3", "Totem4"]
 
 ### TOTEM datasets for 90m and LowPileUp menu - 2018/06/22
-datasets += ["HFvetoTOTEM", "JetsTOTEM"]
+DATASETS += ["HFvetoTOTEM", "JetsTOTEM"]
 
-datasets += ["RandomTOTEM1", "RandomTOTEM2", "RandomTOTEM3", "RandomTOTEM4"]
+DATASETS += ["RandomTOTEM1", "RandomTOTEM2", "RandomTOTEM3", "RandomTOTEM4"]
 
-datasets += ["TOTEM10", "TOTEM11", "TOTEM12", "TOTEM13", "TOTEM20", "TOTEM21", "TOTEM22",
+DATASETS += ["TOTEM10", "TOTEM11", "TOTEM12", "TOTEM13", "TOTEM20", "TOTEM21", "TOTEM22",
               "TOTEM23", "TOTEM3", "TOTEM40", "TOTEM41", "TOTEM42", "TOTEM43"]
 
-datasets += ["ZeroBiasTOTEM1", "ZeroBiasTOTEM2", "ZeroBiasTOTEM3", "ZeroBiasTOTEM4"]
+DATASETS += ["ZeroBiasTOTEM1", "ZeroBiasTOTEM2", "ZeroBiasTOTEM3", "ZeroBiasTOTEM4"]
 ### TOTEM datasets for 90m and LowPileUp menu - 2018/06/22
 
 for dataset in DATASETS:
