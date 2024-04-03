@@ -69,6 +69,18 @@ def injectNewData(dbInterfaceStorageManager,
                                     injectRun = injectRun, 
                                     injectLimit = injectLimit,
                                     transaction = False)
+    newData = [{'p5_id': 42279333, 'run': 20, 'lumi': 1, 'stream': 'Calibration', 'path': '/store/t0streamer/Data/Calibration/000/377/880', 'filename': 'run20_ls0001_streamCalibration_StorageManager.dat', 'filesize': 46923776, 'events': 2340},
+                {'p5_id': 42279360, 'run': 20, 'lumi': 1, 'stream': 'streamL1Scout', 'path': '/store/t0streamer/Data/streamL1Scout/000/377/880', 'filename': 'run20_ls0001_streamstreamL1Scout_StorageManager.dat', 'filesize': 4448256, 'events': 155},
+                {'p5_id': 42279332, 'run': 20, 'lumi': 1, 'stream': 'StreamPhysics', 'path': '/store/t0streamer/Data/StreamPhysics/000/377/880', 'filename': 'run20_ls0001_streamStreamPhysics_StorageManager.dat', 'filesize': 364544, 'events': 1},
+                {'p5_id': 42279336, 'run': 20, 'lumi': 2, 'stream': 'Calibration', 'path': '/store/t0streamer/Data/Calibration/000/377/880', 'filename': 'run20_ls0002_streamCalibration_StorageManager.dat', 'filesize': 50323456, 'events': 2338},
+                {'p5_id': 42279361, 'run': 20, 'lumi': 2, 'stream': 'streamL1Scout', 'path': '/store/t0streamer/Data/streamL1Scout/000/377/880', 'filename': 'run20_ls0002_streamstreamL1Scout_StorageManager.dat', 'filesize': 4280320, 'events': 149},
+                {'p5_id': 42279335, 'run': 20, 'lumi': 2, 'stream': 'StreamPhysics', 'path': '/store/t0streamer/Data/StreamPhysics/000/377/880', 'filename': 'run20_ls0002_streamStreamPhysics_StorageManager.dat', 'filesize': 364544, 'events': 1},
+                {'p5_id': 42279364, 'run': 20, 'lumi': 3, 'stream': 'Calibration', 'path': '/store/t0streamer/Data/Calibration/000/377/880', 'filename': 'run20_ls0003_streamCalibration_StorageManager.dat', 'filesize': 50339840, 'events': 2336},
+                {'p5_id': 42279362, 'run': 20, 'lumi': 3, 'stream': 'streamL1Scout', 'path': '/store/t0streamer/Data/streamL1Scout/000/377/880', 'filename': 'run20_ls0003_streamstreamL1Scout_StorageManager.dat', 'filesize': 4431872, 'events': 154},
+                {'p5_id': 42279363, 'run': 20, 'lumi': 3, 'stream': 'StreamPhysics', 'path': '/store/t0streamer/Data/StreamPhysics/000/377/880', 'filename': 'run20_ls0003_streamStreamPhysics_StorageManager.dat', 'filesize': 364544, 'events': 1},
+                {'p5_id': 42279380, 'run': 20, 'lumi': 4, 'stream': 'Calibration', 'path': '/store/t0streamer/Data/Calibration/000/377/880', 'filename': 'run20_ls0004_streamCalibration_StorageManager.dat', 'filesize': 48652288, 'events': 2338},
+                {'p5_id': 42279366, 'run': 20, 'lumi': 4, 'stream': 'streamL1Scout', 'path': '/store/t0streamer/Data/streamL1Scout/000/377/880', 'filename': 'run20_ls0004_streamstreamL1Scout_StorageManager.dat', 'filesize': 4165632, 'events': 143},
+                {'p5_id': 42279379, 'run': 20, 'lumi': 4, 'stream': 'StreamPhysics', 'path': '/store/t0streamer/Data/StreamPhysics/000/377/880', 'filename': 'run20_ls0004_streamStreamPhysics_StorageManager.dat', 'filesize': 364544, 'events': 1}]
 
     # remove already processed files
     newData[:] = [newFile for newFile in newData if newFile['p5_id'] not in knownStreamers]
@@ -96,8 +108,8 @@ def injectNewData(dbInterfaceStorageManager,
     bindRunHltKey = []
     bindRunStreamCMSSW = []
     for run in sorted(list(newRuns)):
-        (hltkey, cmssw) = getRunInfoDAO.execute(run = run, transaction = False)
-        setupLabel = getRunSetup.execute(run = run, transaction = False)
+        (hltkey, cmssw) = ('TestKey', 'CMSSW_14_0_4') #getRunInfoDAO.execute(run = run, transaction = False)
+        setupLabel = 'Data' #getRunSetup.execute(run = run, transaction = False)
         logging.debug("StorageManagerAPI: run = %d, hltkey = %s, cmssw = %s", run, hltkey, cmssw)
         if hltkey and cmssw:
             cmssw = '_'.join(cmssw.split('_')[0:4]) # only consider base release

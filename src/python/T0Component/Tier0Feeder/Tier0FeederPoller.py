@@ -198,7 +198,11 @@ class Tier0FeederPoller(BaseWorkerThread):
 
                     # retrieve HLT configuration and make sure it's usable
                     try:
-                        hltConfig = self.getHLTConfigDAO.execute(hltkey, transaction = False)
+                        hltConfig = {'mapping': {
+        'Calibration': {'Calibration': {'HLT_MiniDAQ_v1'}}, 
+        'streamL1Scout': {'L1Scout': {'HLT_MiniDAQ_v1'}}, 
+        'StreamPhysics': {'Physics': {'HLT_MiniDAQ_v1'}}}, 
+'process': 'HLT'} #self.getHLTConfigDAO.execute(hltkey, transaction = False)
                         if hltConfig['process'] == None or len(hltConfig['mapping']) == 0:
                             raise RuntimeError("HLTConfDB query returned no process or mapping")
                     except:
