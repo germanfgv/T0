@@ -52,9 +52,6 @@ class FindRecoRelease(DBFormatter):
                           WHERE checkForZeroOneState(reco_release_config.released) = 0
                           AND run.stop_time + :DELAY - :DELAY_OFFSET < :NOW
                           AND run.stop_time > 0
-                          AND run.run_id = ( SELECT MIN(reco_release_config.run_id)
-                                             FROM reco_release_config
-                                             WHERE checkForZeroOneState(reco_release_config.released) = 0 )
                         ) t
                  SET t.released = 1,
                      t.delay = :DELAY,
